@@ -22,6 +22,7 @@
 }
 
 html {
+    height: 100%;
   font-size: 18;
   @media (max-width: 768px) {
     font-size: 16px;
@@ -36,29 +37,42 @@ body {
   margin: 0px;
   background-color: var(--main-bg-color);
   color: var(--text-color);
-  height: 100vh;
+  height: 100%;
   font-family: Inter;
 }
 
 main {
   height: 100%;
-  margin: 23px;
+  padding: 23px;
   display: flex;
+  gap: 20px;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 30px;
   @media (max-width: 480px) {
     flex-direction: column-reverse;
   }
 }
 
 .tasks {
-  height: 80%;
+  height: 100%;
 }
 
 .add-task {
-  height: 10%;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 50%;
+    @media (max-width: 480px) {
+        width: 100%;
+    }
+    justify-content: space-between;
+    .add__task__data{
+        display: flex;
+        width: 100%;
+    flex-direction: column;
+      gap: 6px;
+    }
 }
 
 .add__task__button {
@@ -88,6 +102,20 @@ main {
     transform: rotate(45deg);
   }
 }
+
+input, textarea{
+    width: 100%;
+    border: 1px solid var(--mark-color);
+    border-radius: 4px;
+    background-color: var(--light-bg-color);
+    color: var(--text-color);
+    font-size: var(--input-text-size);
+    line-height: 18px;
+    padding: 6px;
+    align-self: stretch;
+    justify-self: stretch;
+}
+
 
 .tasks__no-tasks {
   font-size: var(--all-task-done-text-size);
