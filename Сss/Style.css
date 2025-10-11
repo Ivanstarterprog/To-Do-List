@@ -36,23 +36,26 @@ html{
 body{
     margin: 0px;
     background-color: var(--main-bg-color);
-    color: var(--text-color);;
+    color: var(--text-color);
+    height: 100vh;
     font-family: Inter;
 }
 
 main{
-    height: 100vh;
-    padding: 23px;
+    height: 100%;
+    margin: 23px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    gap: 30px;
     @media (max-width: 480px) {
         flex-direction: column-reverse;
     }
 }
 
 .tasks{
-    height: 90%;
+    height: 80%;
 }
 
 .add-task{
@@ -67,6 +70,7 @@ main{
     border: 2px solid var(--mark-color);
     border-radius: 8px;
 }
+
 .add__task__button:hover{
     border-color: var(--mark-hover-color);
     background-color: var(--light-bg-color);
