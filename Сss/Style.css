@@ -1,0 +1,40 @@
+:root{
+    --main-bg-color: #1B1A17;
+    --light-bg-color: #242320;
+    --mark-color: #FF8303;
+    --mark-hover-color: #A35709;
+    --text-color: #F0E3CA;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("../Assets/Fonts/Inter-VariableFont_opsz\,wght.ttf");
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0px;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+    font-family: Inter;
+}
+
+main{
+    height: 100vh;
+    padding: 23px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tasks{
+    height: 90%;
+    width: 100%;
+}
+
+.add-task{
+    height: 10%;
+}
