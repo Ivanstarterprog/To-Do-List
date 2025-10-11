@@ -90,6 +90,25 @@ var deleteTaskFromInterface = (taskID) => {
     }
 }
 
+var checkNumberOfTasks = () => {
+    if (tasks.length > 0) {
+        hideThereIsNoTasksCard()
+        return
+    }
+
+    showThereIsNoTasksCard()
+}
+
+var hideThereIsNoTasksCard = () => {
+    let thereIsNoTasksCard = document.getElementById("noTasksCard")
+    thereIsNoTasksCard.style.display = "none"
+}
+
+var showThereIsNoTasksCard = () => {
+    let thereIsNoTasksCard = document.getElementById("noTasksCard")
+    thereIsNoTasksCard.style.display = "flex"
+}
+
 var reloadTasksList = () => {
     let taskList = document.getElementById("tasks");
     taskList.textContent = ""
@@ -108,6 +127,7 @@ window.addEventListener("load", ()=>{
             newTaskTitle.value, 
             newTaskBody.value
         )
+        checkNumberOfTasks()
         newTaskTitle.value = ""
         newTaskBody.value = ""
         console.log(tasks);
@@ -116,6 +136,7 @@ window.addEventListener("load", ()=>{
         if (event.target.classList.contains('delete__task__button')) {
             id = event.target.getAttribute('task-id')
             deleteTask(id)  
+            checkNumberOfTasks()
         }
     });
 
