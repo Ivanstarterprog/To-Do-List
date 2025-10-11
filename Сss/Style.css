@@ -56,6 +56,9 @@ main {
 }
 
 .tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     width: 50%;
     @media (max-width: 480px) {
         width: 100%;
@@ -120,6 +123,13 @@ input, textarea{
     align-self: stretch;
     justify-self: stretch;
 }
+
+.task-card-container{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .task__card{
     width: 100%;
     display: flex;
@@ -162,7 +172,24 @@ input, textarea{
     cursor:pointer;
 }
 
-
+.task__card__buttons-container{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: end;
+    .task__card__buttons{
+        width: 36px;
+        height: 36px;
+        background-color: var(--main-bg-color);
+        border: 1px solid var(--mark-color);
+        border-radius: 8px;
+    }
+    .task__card__buttons:hover{
+        background-color: var(--light-bg-color);
+        border-color: var(--mark-hover-color);
+        cursor:pointer;
+    }
+}
 
 .tasks__no-tasks {
   font-size: var(--all-task-done-text-size);
