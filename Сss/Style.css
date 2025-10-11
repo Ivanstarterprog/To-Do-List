@@ -104,11 +104,19 @@ main {
   background-color: var(--main-bg-color);
   border: 2px solid var(--mark-color);
   border-radius: 8px;
+  z-index: 3;
   img{
+    pointer-events: none;
     width: 75%;
     height: 75%;
     transform: rotate(45deg);
   }
+}
+
+.delete__task__button:hover{
+  background-color: var(--light-bg-color);
+    border-color: var(--mark-hover-color);
+    cursor:pointer;
 }
 
 input, textarea{
@@ -159,12 +167,6 @@ input, textarea{
     *{
         margin: 0px;
     }    
-}
-
-.task__card:hover{
-    background-color: var(--light-bg-color);
-    border-color: var(--mark-hover-color);
-    cursor:pointer;
 }
 
 .task__card__buttons-container{
