@@ -201,7 +201,7 @@ input, textarea{
   gap: 12px;
   .tasks__no-task__separator {
     border: 3px solid var(--mark-color);
-    width: 80%;
+    width: 60%;
   }
   p {
     margin: 0px;
