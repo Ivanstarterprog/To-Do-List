@@ -43,7 +43,7 @@ var addTaskToInterface = (task) => {
     const newTaskDiv = document.createElement("div");
     newTaskDiv.innerHTML = `
         <div class="task-card-container" id="task#${task.id}">
-          <div class="task__card">
+          <div class="task__card" task-id="${task.id}">
             <div class="task__card__data">
               <h3 class="task__card__title">
                 ${task.title}
@@ -57,7 +57,7 @@ var addTaskToInterface = (task) => {
                 <img src="../Assets/Img/Union.svg" alt="Удалить" />
             </button>
           </div>
-          <div class="task__card__buttons-container">
+          <div class="task__card__buttons-container" task-id="${task.id}" id="task-buttons#${task.id}">
             <button class="task__card__buttons">
                 <img src="../Assets/Img/Share.svg" alt="Поделиться" />
             </button>
@@ -117,6 +117,34 @@ var reloadTasksList = () => {
     }
 }
 
+var toggleTaskButtons = (taskID) => {
+    let taskButtons = document.getElementById(`task-buttons#${taskID}`)
+    if (!taskButtons){
+        console.log("DA GDE KNOPKI")
+        return
+    }
+    hideAllNotClickedTaskButtons(taskID)
+    if (taskButtons.style.display == "flex"){
+        taskButtons.style.display = "none"
+        return
+    }
+    taskButtons.style.display = "flex"
+}
+
+var hideAllNotClickedTaskButtons = (taskID) => {
+    document.querySelectorAll('.task__card__buttons-container').forEach(container => {
+        containerID = container.getAttribute('task-id')
+        if (containerID != taskID){
+            container.style.display = 'none';
+        }
+    });
+}
+
+var hideAllTaskButtons = () => {
+    document.querySelectorAll('.task__card__buttons-container').forEach(container => {
+        container.style.display = 'none';
+    });
+}
 
 window.addEventListener("load", ()=>{
     let newTaskTitle = document.getElementById("newTaskTitle")
@@ -130,13 +158,19 @@ window.addEventListener("load", ()=>{
         checkNumberOfTasks()
         newTaskTitle.value = ""
         newTaskBody.value = ""
-        console.log(tasks);
     })
     document.body.addEventListener('click', function(event) {
         if (event.target.classList.contains('delete__task__button')) {
-            id = event.target.getAttribute('task-id')
+            let id = event.target.getAttribute('task-id')
             deleteTask(id)  
             checkNumberOfTasks()
+        }
+        if (event.target.classList.contains('task__card')) {
+            id = event.target.getAttribute('task-id')
+            toggleTaskButtons(id)
+        }
+        else{
+            hideAllTaskButtons()
         }
     });
 

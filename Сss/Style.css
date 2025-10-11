@@ -170,7 +170,7 @@ input, textarea{
 }
 
 .task__card__buttons-container{
-    display: flex;
+    display: none;
     flex-direction: row;
     gap: 8px;
     justify-content: end;
@@ -189,6 +189,7 @@ input, textarea{
 }
 
 .tasks__no-tasks {
+  margin-top: 100px;
   font-size: var(--all-task-done-text-size);
   color: var(--all-tasks-done-text-color);
   text-align: center;
