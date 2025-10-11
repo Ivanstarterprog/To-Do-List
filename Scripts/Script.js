@@ -36,6 +36,14 @@ var addTaskToList = (task) => {
     )
 }
 
+var reloadTasksList = () => {
+    let taskList = document.getElementById("tasks");
+    taskList.textContent = ""
+    for (task in tasks){
+        addTaskToInterface(task);
+    }
+}
+
 var addTaskToInterface = (task) => {
     let taskList = document.getElementById("tasks");
     const newTaskDiv = document.createElement("div");
