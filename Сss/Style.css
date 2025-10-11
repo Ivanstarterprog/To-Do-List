@@ -155,11 +155,6 @@ input, textarea{
             font-weight: 200;
         }
     }
-
-    .task__card__bellow__buttons{
-        width: 100%;
-        
-    }
     
     *{
         margin: 0px;
