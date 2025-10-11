@@ -59,7 +59,7 @@ main{
     height: 10%;
 }
 
-.delete__task__button{
+.add__task__button{
     width: 70px;
     height: 70px;
     cursor: pointer;
@@ -67,8 +67,24 @@ main{
     border: 2px solid var(--mark-color);
     border-radius: 8px;
 }
-.delete__task__button:hover{
+.add__task__button:hover{
     border-color: var(--mark-hover-color);
     background-color: var(--light-bg-color);
 }
 
+.tasks__no-tasks{
+    font-size: var(--all-task-done-text-size);
+    color: var(--all-tasks-done-text-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    .tasks__no-task__separator{
+        border: 3px solid var(--mark-color);
+        width: 80%;
+    }
+    p{
+        margin: 0px;
+    }
+}
