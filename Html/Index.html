@@ -9,6 +9,15 @@
   </head>
   <body>
     <main>
+      <div id="confirmModal" class="modal ">
+        <div class="modal-content">
+          <p>Вы уверены, что хотите удалить эту задачу?</p>
+          <div class="modal__button-container">
+            <button id="confirmDelete" class="modal__button">Да</button>
+            <button id="cancelDelete" class="modal__button">Нет</button>
+          </div>
+        </div>
+      </div>
       <div id="tasks" class="tasks">
         <div id="noTasksCard" class="tasks__no-tasks">
           <div class="tasks__no-task__separator"></div>

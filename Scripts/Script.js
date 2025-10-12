@@ -120,7 +120,6 @@ var reloadTasksList = () => {
 var toggleTaskButtons = (taskID) => {
     let taskButtons = document.getElementById(`task-buttons#${taskID}`)
     if (!taskButtons){
-        console.log("DA GDE KNOPKI")
         return
     }
     hideAllNotClickedTaskButtons(taskID)

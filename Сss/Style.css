@@ -11,6 +11,7 @@
   --task-deadline-text-size: 0.7rem;
   --all-task-done-text-size: 1.7rem;
   --alert-text-size: 1.28;
+  --modal-button-text-size: 0.714rem;
 }
 
 @font-face {
@@ -204,4 +205,18 @@ input, textarea{
   p {
     margin: 0px;
   }
+}
+
+.modal__button{
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+  box-shadow: none;
+  border: 1px solid var(--mark-color);
+  font-size: var(--modal-button-text-size);
+  padding: 10px 30px;
+}
+
+.modal__button:hover{
+  background-color: var(--light-bg-color);
+  border-color: var(--mark-hover-color);
 }
