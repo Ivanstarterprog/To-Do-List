@@ -4,13 +4,14 @@
   --mark-color: #ff8303;
   --mark-hover-color: #a35709;
   --text-color: #f0e3ca;
-  --all-tasks-done-text-color: #ffffff;
+  --alert-text-color: #ffffff;
+  --modal-background-color: rgba(7,7,7, 0.89);
   --input-text-size: 1rem;
   --task-title-text-size: 1.57rem;
   --task-body-text-size: 1rem;
   --task-deadline-text-size: 0.7rem;
   --all-task-done-text-size: 1.7rem;
-  --alert-text-size: 1.28;
+  --alert-text-size: 1.28rem;
   --modal-button-text-size: 0.714rem;
 }
 
@@ -192,7 +193,7 @@ input, textarea{
 .tasks__no-tasks {
   margin-top: 100px;
   font-size: var(--all-task-done-text-size);
-  color: var(--all-tasks-done-text-color);
+  color: var(--alert-text-color);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -219,4 +220,45 @@ input, textarea{
 .modal__button:hover{
   background-color: var(--light-bg-color);
   border-color: var(--mark-hover-color);
+}
+
+.modal__button-container{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.modal{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--modal-background-color);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+
+  .modal-content{
+    background-color: var(--main-bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &#confirmModal{
+    .modal-content{
+      padding: 20px;
+      width: 75%;
+      border-radius: 0px 0px 4px 4px;
+      border-top: 5px solid var(--mark-color);
+      p{
+        font-size: var(--alert-text-size);
+        margin: 30px 0px 40px 0px;
+        color: var(--alert-text-color);
+        text-align: center;
+      }
+    }
+  }
 }

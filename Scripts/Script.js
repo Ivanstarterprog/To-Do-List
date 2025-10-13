@@ -30,6 +30,7 @@ var addTask = (tittle, body) =>{
     let newTask = new Task(tittle, body)
     addTaskToList(newTask)
     addTaskToInterface(newTask)
+    checkNumberOfTasks()
 }
 
 var addTaskToList = (task) => {
@@ -74,9 +75,16 @@ var addTaskToInterface = (task) => {
     taskList.appendChild(newTaskDiv.firstElementChild);
 }
 
-var deleteTask = (taskID) =>{
+var deleteTask = async (taskID) =>{
+    showModalWindow('confirmModal')
+    const confirmDeletion = await confirmDeletionOfTask()
+    hideModalWindow('confirmModal')
+    if (!confirmDeletion){
+        return
+    }
     deleteTaskFromList(taskID)
     deleteTaskFromInterface(taskID)
+    checkNumberOfTasks()
 }
 
 var deleteTaskFromList = (taskID) => {
@@ -145,6 +153,31 @@ var hideAllTaskButtons = () => {
     });
 }
 
+var showModalWindow = (id) => {
+    const modal = document.getElementById(id);
+    modal.style.display = 'flex';
+}
+
+var hideModalWindow = (id) => {
+    const modal = document.getElementById(id);
+    modal.style.display = 'none';
+}
+
+var confirmDeletionOfTask = () => {
+    return new Promise((resolve) => {
+        const confirmBtn = document.getElementById('confirmDelete');
+        const cancelBtn = document.getElementById('cancelDelete');
+
+        confirmBtn.onclick = () => {
+            resolve(true);
+        };
+
+        cancelBtn.onclick = () => {
+            resolve(false); 
+        };
+    });
+}
+
 window.addEventListener("load", ()=>{
     let newTaskTitle = document.getElementById("newTaskTitle")
     let newTaskBody = document.getElementById("newTaskBody")
@@ -154,7 +187,6 @@ window.addEventListener("load", ()=>{
             newTaskTitle.value, 
             newTaskBody.value
         )
-        checkNumberOfTasks()
         newTaskTitle.value = ""
         newTaskBody.value = ""
     })
@@ -162,10 +194,10 @@ window.addEventListener("load", ()=>{
         if (event.target.classList.contains('delete__task__button')) {
             let id = event.target.getAttribute('task-id')
             deleteTask(id)  
-            checkNumberOfTasks()
+            
         }
         if (event.target.classList.contains('task__card')) {
-            id = event.target.getAttribute('task-id')
+            id = event.target.getAttribute('task-id') 
             toggleTaskButtons(id)
         }
         else{
