@@ -4,7 +4,7 @@ class Task{
         this.id = Task.nextId++; 
         this.title = title;
         this.body = body;
-        this.deadLineStart = "Не указано"
+        this.deadLineStart = new Date().toLocaleDateString('ru-RU');
         this.deadLineEnd = "Не указано"
     }
 
@@ -59,13 +59,13 @@ var addTaskToInterface = (task) => {
             </button>
           </div>
           <div class="task__card__buttons-container" task-id="${task.id}" id="task-buttons#${task.id}">
-            <button class="task__card__buttons">
+            <button class="task__card__buttons task__card__share-button">
                 <img src="../Assets/Img/Share.svg" alt="Поделиться" />
             </button>
-            <button class="task__card__buttons">
+            <button class="task__card__buttons  task__card__share-butto">
                 <img src="../Assets/Img/i.svg" alt="Информация" />
             </button>
-            <button class="task__card__buttons">
+            <button class="task__card__buttons cardEditButton">
                 <img src="../Assets/Img/Edit.svg" alt="Редактировать" />
             </button>
           </div>
@@ -153,9 +153,21 @@ var hideAllTaskButtons = () => {
     });
 }
 
+var showShareMenu = () => {
+    showModalWindow("shareModal")
+}
+
+var hideShareMenu = () => {
+    hideModalWindow("shareModal")
+}
+
+
 var showModalWindow = (id) => {
     const modal = document.getElementById(id);
     modal.style.display = 'flex';
+    modal.addEventListener("click", () => {
+        hideModalWindow(id)
+    })
 }
 
 var hideModalWindow = (id) => {
@@ -194,13 +206,16 @@ window.addEventListener("load", ()=>{
         if (event.target.classList.contains('delete__task__button')) {
             let id = event.target.getAttribute('task-id')
             deleteTask(id)  
-            
         }
-        if (event.target.classList.contains('task__card')) {
+        if (event.target.classList.contains('task__card__share-button')){
+            console.log("Try to open share")
+            showShareMenu()
+        }
+        if (event.target.classList.contains('task__card') ) {
             id = event.target.getAttribute('task-id') 
             toggleTaskButtons(id)
         }
-        else{
+        else if (!event.target.classList.contains("task__card__buttons")){
             hideAllTaskButtons()
         }
     });

@@ -5,6 +5,8 @@
   --mark-hover-color: #a35709;
   --text-color: #f0e3ca;
   --alert-text-color: #ffffff;
+  --share-button-background-color: #23221f;
+  --share-button-hover-background-color: #2A2926;
   --modal-background-color: rgba(7,7,7, 0.89);
   --input-text-size: 1rem;
   --task-title-text-size: 1.57rem;
@@ -182,6 +184,9 @@ input, textarea{
         background-color: var(--main-bg-color);
         border: 1px solid var(--mark-color);
         border-radius: 8px;
+        img{
+          pointer-events: none;
+        }
     }
     .task__card__buttons:hover{
         background-color: var(--light-bg-color);
@@ -229,7 +234,7 @@ input, textarea{
 }
 
 .modal{
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--modal-background-color);
@@ -241,13 +246,15 @@ input, textarea{
   top: 0;
 
   .modal-content{
+    pointer-events: auto; 
     background-color: var(--main-bg-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
   }
   &#confirmModal{
+    display: none;
     .modal-content{
       padding: 20px;
       width: 75%;
@@ -261,4 +268,29 @@ input, textarea{
       }
     }
   }
+  &#shareModal{
+    display: none;
+    align-items: flex-end;
+    .modal-content{
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      justify-content: space-around;
+      background-color: var(--main-bg-color);
+      border-radius: 8px 8px 0px 0px;
+      padding: 14px 20px;
+    }
+  }
+}
+
+.shareButton{
+  border-radius: 48px;
+  width: 48px;
+  height: 48px;
+  background-color: var(--share-button-background-color);
+  border: 0px solid;
+}
+
+.shareButton:hover, .shareButton:active{
+  background-color: var(--share-button-hover-background-color);
 }
