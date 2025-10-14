@@ -217,6 +217,7 @@ input, textarea{
   background-color: var(--main-bg-color);
   color: var(--text-color);
   box-shadow: none;
+  cursor: pointer;
   border: 1px solid var(--mark-color);
   font-size: var(--modal-button-text-size);
   padding: 10px 30px;
@@ -274,7 +275,7 @@ input, textarea{
     .modal-content{
       display: flex;
       flex-direction: row;
-      gap: 8px;
+      gap: 16px;
       justify-content: space-around;
       background-color: var(--main-bg-color);
       border-radius: 8px 8px 0px 0px;
@@ -286,16 +287,25 @@ input, textarea{
     display: flex;
     align-items: flex-end;
     .modal-content{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       padding: 20px;
       width: 400px;
       border-radius: 0px 0px 4px 4px;
       border-top: 5px solid var(--mark-color);
       height: 44%;
       input, textarea{
+        font-size: var(--input-text-size);
         border: 1px solid var(--mark-color);
         border-radius: 4px;
+        color: var(--text-color)
       }
-
+      textarea{
+        height: 100%;
+        resize: none;
+        overflow: auto;
+      }
     }
   }
 }

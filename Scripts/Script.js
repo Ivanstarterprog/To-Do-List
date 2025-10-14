@@ -4,6 +4,7 @@ class Task{
         this.id = Task.nextId++; 
         this.title = title;
         this.body = body;
+        this.fullDescription = ""
         this.deadLineStart = new Date().toLocaleDateString('ru-RU');
         this.deadLineEnd = "Не указано"
     }
