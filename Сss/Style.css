@@ -279,21 +279,21 @@ input, textarea{
       justify-content: space-around;
       background-color: var(--main-bg-color);
       border-radius: 8px 8px 0px 0px;
-      padding: 18px;
+      padding: 14px 20px;
       
     }
   }
   &#editModal{
-    display: flex;
+    pointer-events: all;
+    display: none;
     align-items: flex-end;
     .modal-content{
       display: flex;
       flex-direction: column;
       gap: 8px;
-      padding: 20px;
+      padding: 18px;
       width: 400px;
-      border-radius: 0px 0px 4px 4px;
-      border-top: 5px solid var(--mark-color);
+      border-radius: 8px 8px 0px 0px;
       height: 44%;
       input, textarea{
         font-size: var(--input-text-size);
