@@ -58,6 +58,9 @@ var tasks = new Array();
 
 var saveTasks = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
+  if (tasks.length == 0){
+    return
+  }
   localStorage.setItem('last-id', JSON.stringify(tasks[tasks.length - 1].id));
 }
 
