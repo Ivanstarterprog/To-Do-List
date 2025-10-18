@@ -1,15 +1,33 @@
 class Task {
   static nextId = 0;
-  constructor(title, body = "У задачи нет описания") {
-    this.id = Task.nextId++;
+  constructor(title = "Не задан заголовок", body = "У задачи нет описания") {
+    this.id = ++Task.nextId;
     this.title = title;
     this.body = body;
     this.description = "";
     this.deadLineStart = new Date().toLocaleDateString("ru-RU");
-    this.deadLineEnd = "Не указано";
+    this.deadLineEnd = "";
+  }
+
+  static setNextId(id) {
+    Task.nextId = ++id;
+  }
+
+  static objectToTask(item){
+    let task = new Task();
+    task.id = item.id;
+    task.title = item.title;
+    task.body = item.body;
+    task.description = item.description;
+    task.deadLineStart = item.deadLineStart;
+    task.deadLineEnd = item.deadLineEnd;
+    return task;
   }
 
   deadLine() {
+    if (this.deadLineEnd == ""){
+      return `${this.deadLineStart}`
+    }
     return `${this.deadLineStart} - ${this.deadLineEnd}`;
   }
 
@@ -38,6 +56,24 @@ class Task {
 
 var tasks = new Array();
 
+var saveTasks = () => {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  localStorage.setItem('last-id', JSON.stringify(tasks[tasks.length - 1].id));
+}
+
+var loadTasks = () => {
+  tasks = localStorageToTasks();
+  Task.setNextId(JSON.parse(localStorage.getItem('last-id')) || 0) ;
+  checkNumberOfTasks();
+  reloadTasksList();
+}
+
+var localStorageToTasks = () => {
+  let localTasks = JSON.parse(localStorage.getItem('tasks')) || new Array();
+  return localTasks.map(item => Task.objectToTask(item))
+}
+
+
 var addTask = (tittle, body) => {
   if (tittle == "") {
     return;
@@ -46,6 +82,8 @@ var addTask = (tittle, body) => {
   addTaskToList(newTask);
   addTaskToInterface(newTask);
   checkNumberOfTasks();
+  saveTasks();
+  console.log(tasks)
 };
 
 var addTaskToList = (task) => {
@@ -55,7 +93,6 @@ var addTaskToList = (task) => {
 var addTaskToInterface = (task) => {
   let taskList = document.getElementById("tasks");
   const newTaskDiv = document.createElement("div");
-  console.log(task)
   newTaskDiv.innerHTML = `
     <div class="task-card-container" id="task#${task.id}">
     <div class="task__card" task-id="${task.id}">
@@ -100,6 +137,7 @@ var deleteTask = async (taskID) => {
   }
   deleteTaskFromList(taskID);
   deleteTaskFromInterface(taskID);
+  saveTasks();
   checkNumberOfTasks();
 };
 
@@ -120,7 +158,6 @@ var hideModalWindow = (id) => {
   const modal = document.getElementById(id);
   modal.style.display = "none";
 };
-
 
 var confirmModal = (confirmButtonID, cancelButtonID) => {
   return new Promise((resolve) => { 
@@ -165,6 +202,7 @@ var showEditMenu = async (taskID) => {
       return
     }
     editTaskInformation(taskID)
+    saveTasks();
     reloadTasksList()
 };
 
@@ -216,11 +254,11 @@ var showThereIsNoTasksCard = () => {
 };
 
 var reloadTasksList = () => {
-  let taskList = document.getElementById("tasks");
-  taskList.textContent = "";
-  console.log(tasks)
+  let taskList = document.getElementById("tasks").querySelectorAll(".task-card-containe");
+  for (let taskCard of taskList){
+    taskCard.remove()
+  }
   for (let task of tasks) {
-    console.log(task)
     addTaskToInterface(task);
   }
 };
@@ -258,6 +296,7 @@ var hideAllTaskButtons = () => {
 };
 
 window.addEventListener("load", () => {
+  loadTasks()
   let newTaskTitle = document.getElementById("newTaskTitle");
   let newTaskBody = document.getElementById("newTaskBody");
   let addNewTask = document.getElementById("addNewTaskButton");
