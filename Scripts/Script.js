@@ -177,6 +177,14 @@ var confirmModal = (confirmButtonID, cancelButtonID) => {
   });
 };
 
+var taskInformationSetReadOnly = (isReadOnly = false) =>{
+  let taskInformationInputs = document.getElementById("editModal").querySelectorAll(".taskInformation");
+  for (let task of taskInformationInputs){
+    task.readOnly = isReadOnly;
+  }
+}
+
+
 var deleteTaskFromList = (taskID) => {
   tasks = tasks.filter((task) => task.id != taskID);
 };
@@ -192,21 +200,25 @@ var showShareMenu = () => {
   showModalWindow("shareModal");
 };
 
-var hideShareMenu = () => {
-  hideModalWindow("shareModal");
-};
+var showTaskInformationMenu = (taskID) =>{
+  showModalWindow("editModal")
+  taskInformationSetReadOnly(false)
+  updateEditMenuInformation(taskID)
+}
 
 var showEditMenu = async (taskID) => {
+  console.log("Test")
     showModalWindow("editModal")
+    taskInformationSetReadOnly(false)
     updateEditMenuInformation(taskID)
     const confirmChangeOfTask = await confirmModal("confirmEdit", "cancelEdit")
     hideModalWindow("editModal")
+    reloadTasksList();
     if(!confirmChangeOfTask){
       return
     }
     editTaskInformation(taskID)
     saveTasks();
-    reloadTasksList()
 };
 
 var updateEditMenuInformation = (taskID) => {
@@ -257,7 +269,7 @@ var showThereIsNoTasksCard = () => {
 };
 
 var reloadTasksList = () => {
-  let taskList = document.getElementById("tasks").querySelectorAll(".task-card-containe");
+  let taskList = document.getElementById("tasks").querySelectorAll(".task-card-container");
   for (let taskCard of taskList){
     taskCard.remove()
   }
@@ -315,14 +327,15 @@ window.addEventListener("load", () => {
     }
     if (event.target.classList.contains("task__card__info-button")) {
       let id = event.target.getAttribute("task-id");
-      showEditMenu(id);
+      showTaskInformationMenu(id);
     }
     if (event.target.classList.contains("task__card__edit-button")) {
       let id = event.target.getAttribute("task-id");
       showEditMenu(id);
     }
     if (event.target.classList.contains("task__card__share-button")) {
-      showShareMenu();
+      let id = event.target.getAttribute("task-id");
+      showShareMenu(id);
     }
     if (event.target.classList.contains("task__card")) {
       id = event.target.getAttribute("task-id");
