@@ -6,8 +6,8 @@
   --text-color: #f0e3ca;
   --alert-text-color: #ffffff;
   --share-button-background-color: #23221f;
-  --share-button-hover-background-color: #2A2926;
-  --modal-background-color: rgba(7,7,7, 0.89);
+  --share-button-hover-background-color: #2a2926;
+  --modal-background-color: rgba(7, 7, 7, 0.89);
   --input-text-size: 1rem;
   --task-title-text-size: 1.57rem;
   --task-body-text-size: 1rem;
@@ -19,7 +19,7 @@
 
 @font-face {
   font-family: Inter;
-  src: url("../Assets/Fonts/Inter-VariableFont_opsz\,wght.ttf");
+  src: url("../assets/fonts/Inter-variablefont_opsz\,wght.ttf");
 }
 
 * {
@@ -27,7 +27,7 @@
 }
 
 html {
-    height: 100%;
+  height: 100%;
   font-size: 18;
   @media (max-width: 768px) {
     font-size: 16px;
@@ -59,36 +59,36 @@ main {
   }
 }
 
-button:hover{
+button:hover {
   cursor: pointer;
 }
 
 .tasks {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 400px;
-    @media (max-width: 480px) {
-        width: 100%;
-    }
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 400px;
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+  height: 100%;
 }
 
 .add-task {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  width: 400px;
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+  justify-content: space-between;
+  .add__task__data {
     display: flex;
-    flex-direction: row;
-    gap: 8px;
-    width: 400px;
-    @media (max-width: 480px) {
-        width: 100%;
-    }
-    justify-content: space-between;
-    .add__task__data{
-        display: flex;
-        width: 100%;
-      flex-direction: column;
-      gap: 6px;
-    }
+    width: 100%;
+    flex-direction: column;
+    gap: 6px;
+  }
 }
 
 .add__task__button {
@@ -97,117 +97,118 @@ button:hover{
   background-color: var(--main-bg-color);
   border: 2px solid var(--mark-color);
   border-radius: 8px;
-  &:hover{
+  &:hover {
     border-color: var(--mark-hover-color);
     background-color: var(--light-bg-color);
   }
 }
-.add__task__top-row{
+.add__task__top-row {
   display: flex;
   flex-direction: row;
   gap: 6px;
 }
 
-.add__deadline__button{
+.add__deadline__button {
   width: 32px;
   height: 32px;
   background-color: var(--main-bg-color);
   border: 1px solid var(--mark-color);
   border-radius: 4px;
-  &:hover{
+  &:hover {
     background-color: var(--light-bg-color);
     border-color: var(--mark-hover-color);
   }
 }
 
-.delete__task__button{
+.delete__task__button {
   width: 32px;
   height: 32px;
   background-color: var(--main-bg-color);
   border: 2px solid var(--mark-color);
   border-radius: 8px;
   z-index: 3;
-  img{
+  img {
     pointer-events: none;
     width: 75%;
     height: 75%;
     transform: rotate(45deg);
   }
-  &:hover{
+  &:hover {
     background-color: var(--light-bg-color);
     border-color: var(--mark-hover-color);
   }
 }
 
-input, textarea{
-    width: 100%;
-    border: 1px solid var(--mark-color);
-    border-radius: 4px;
-    background-color: var(--light-bg-color);
-    color: var(--text-color);
-    font-size: var(--input-text-size);
-    line-height: 18px;
-    padding: 6px;
-    align-self: stretch;
-    justify-self: stretch;
+input,
+textarea {
+  width: 100%;
+  border: 1px solid var(--mark-color);
+  border-radius: 4px;
+  background-color: var(--light-bg-color);
+  color: var(--text-color);
+  font-size: var(--input-text-size);
+  line-height: 18px;
+  padding: 6px;
+  align-self: stretch;
+  justify-self: stretch;
 }
 
-.task-card-container{
+.task-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task__card {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 2px solid var(--mark-color);
+  border-radius: 8px;
+  padding: 16px;
+  .task__card__data {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 3px;
+    .task__card__title {
+      font-size: var(--task-title-text-size);
+      font-weight: 500;
+    }
+    .task__card__description {
+      font-size: var(--task-body-text-size);
+      font-weight: 400;
+    }
+    .task__card__deadline {
+      font-size: var(--task-deadline-text-size);
+      font-weight: 200;
+    }
+  }
+
+  * {
+    margin: 0px;
+  }
 }
 
-.task__card{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border: 2px solid var(--mark-color);
+.task__card__buttons-container {
+  display: none;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: end;
+  .task__card__buttons {
+    width: 36px;
+    height: 36px;
+    background-color: var(--main-bg-color);
+    border: 1px solid var(--mark-color);
     border-radius: 8px;
-    padding: 16px;
-    .task__card__data{
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
-        .task__card__title{
-            font-size: var(--task-title-text-size);
-            font-weight: 500;
-        }
-        .task__card__description{
-            font-size: var(--task-body-text-size);
-            font-weight: 400;
-        }
-        .task__card__deadline{
-            font-size: var(--task-deadline-text-size);
-            font-weight: 200;
-        }
+    img {
+      pointer-events: none;
     }
-    
-    *{
-        margin: 0px;
-    }    
-}
-
-.task__card__buttons-container{
-    display: none;
-    flex-direction: row;
-    gap: 8px;
-    justify-content: end;
-    .task__card__buttons{
-        width: 36px;
-        height: 36px;
-        background-color: var(--main-bg-color);
-        border: 1px solid var(--mark-color);
-        border-radius: 8px;
-        img{
-          pointer-events: none;
-        }
-    }
-    .task__card__buttons:hover{
-        background-color: var(--light-bg-color);
-        border-color: var(--mark-hover-color);
-    }
+  }
+  .task__card__buttons:hover {
+    background-color: var(--light-bg-color);
+    border-color: var(--mark-hover-color);
+  }
 }
 
 .tasks__no-tasks {
@@ -228,26 +229,26 @@ input, textarea{
   }
 }
 
-.modal__button{
+.modal__button {
   background-color: var(--main-bg-color);
   color: var(--text-color);
   box-shadow: none;
   border: 1px solid var(--mark-color);
   font-size: var(--modal-button-text-size);
   padding: 10px 30px;
-  &:hover{
+  &:hover {
     background-color: var(--light-bg-color);
     border-color: var(--mark-hover-color);
   }
 }
 
-.modal__button-container{
+.modal__button-container {
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-.modal{
+.modal {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -259,22 +260,22 @@ input, textarea{
   left: 0;
   top: 0;
 
-  .modal-content{
-    pointer-events: auto; 
+  .modal-content {
+    pointer-events: auto;
     background-color: var(--main-bg-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
   }
-  &#confirmModal{
+  &#confirmModal {
     display: none;
-    .modal-content{
+    .modal-content {
       padding: 20px;
       width: 400px;
       border-radius: 0px 0px 4px 4px;
       border-top: 5px solid var(--mark-color);
-      p{
+      p {
         font-size: var(--alert-text-size);
         margin: 30px 0px 40px 0px;
         color: var(--alert-text-color);
@@ -282,10 +283,10 @@ input, textarea{
       }
     }
   }
-  &#shareModal{
+  &#shareModal {
     display: none;
     align-items: flex-end;
-    .modal-content{
+    .modal-content {
       display: flex;
       flex-direction: row;
       gap: 16px;
@@ -293,14 +294,13 @@ input, textarea{
       background-color: var(--main-bg-color);
       border-radius: 8px 8px 0px 0px;
       padding: 14px 20px;
-      
     }
   }
-  &#editModal{
+  &#editModal {
     pointer-events: all;
     display: none;
     align-items: flex-end;
-    .modal-content{
+    .modal-content {
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -308,13 +308,14 @@ input, textarea{
       width: 400px;
       border-radius: 8px 8px 0px 0px;
       height: 44%;
-      input, textarea{
+      input,
+      textarea {
         font-size: var(--input-text-size);
         border: 1px solid var(--mark-color);
         border-radius: 4px;
-        color: var(--text-color)
+        color: var(--text-color);
       }
-      textarea{
+      textarea {
         height: 100%;
         resize: none;
         overflow: auto;
@@ -323,13 +324,18 @@ input, textarea{
   }
 }
 
-.shareButton{
+.share_button {
   border-radius: 48px;
   width: 48px;
   height: 48px;
   background-color: var(--share-button-background-color);
   border: 0px solid;
-  &:hover, &:active{
+  &:hover,
+  &:active {
     background-color: var(--share-button-hover-background-color);
   }
+}
+
+.deadline_calendar {
+  display: none;
 }

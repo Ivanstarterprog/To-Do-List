@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Css/style.css" />
+    <script src="scripts/script.js"></script>
+    <title>To Do List</title>
+  </head>
+  <body>
+    <main>
+      <div id="confirmModal" class="modal">
+        <div class="modal-content">
+          <p>Удалить эту задачу?</p>
+          <div class="modal__button-container">
+            <button id="confirmDelete" class="modal__button">Да</button>
+            <button id="cancelDelete" class="modal__button">Нет</button>
+          </div>
+        </div>
+      </div>
+      <div id="editModal" class="modal">
+        <div class="modal-content">
+          <input
+            class="taskInformation"
+            type="text"
+            placeholder="Заголовок..."
+            id="titleEdit"
+          />
+          <input
+            class="taskInformation"
+            type="text"
+            placeholder="Краткое описание..."
+            id="bodyEdit"
+          />
+          <textarea
+            class="taskInformation"
+            id="descriptionEdit"
+            placeholder="Подробное описание..."
+          ></textarea>
+          <div class="modal__button-container">
+            <button id="cancelEdit" class="modal__button">Отменить</button>
+            <button id="confirmEdit" class="modal__button">Сохранить</button>
+          </div>
+        </div>
+      </div>
+      <div id="shareModal" class="modal">
+        <div class="modal-content">
+          <button class="share_button">
+            <img src="assets/img/share copy.svg" alt="" />
+          </button>
+          <button class="share_button">
+            <img src="assets/img/share vk.svg" alt="" />
+          </button>
+          <button class="share_button">
+            <img src="assets/img/share telegram.svg" alt="" />
+          </button>
+          <button class="share_button">
+            <img src="assets/img/share whatsup.svg" alt="" />
+          </button>
+          <button class="share_button">
+            <img src="assets/img/share facebook.svg" alt="" />
+          </button>
+        </div>
+      </div>
+      <div id="tasks" class="tasks">
+        <div id="noTasksCard" class="tasks__no-tasks">
+          <div class="tasks__no-task__separator"></div>
+          <p>Все задачи выполнены</p>
+          <div class="tasks__no-task__separator"></div>
+        </div>
+      </div>
+      <div class="add-task">
+        <div class="add__task__data">
+          <div class="add__task__top-row">
+            <input
+              type="text"
+              name=""
+              id="newTaskTitle"
+              placeholder="Заголовок..."
+            />
+            <button class="add__deadline__button" id="addDeadlineToNewTask">
+              <img src="assets/img/calendar.svg" alt="" />
+              <input
+                type="date"
+                id="hiddenDeadlineForNewTask"
+                class="deadline_calendar"
+              />
+            </button>
+          </div>
+          <input
+            type="text"
+            name=""
+            id="newTaskBody"
+            placeholder="Краткое описание..."
+          />
+        </div>
+        <button class="add__task__button" id="addNewTaskButton">
+          <img src="../assets/img/union.svg" alt="Добавить задачу" />
+        </button>
+      </div>
+    </main>
+  </body>
+</html>
