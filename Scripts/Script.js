@@ -313,8 +313,12 @@ var hideAllTaskButtons = () => {
     });
 };
 
-var showDeadlineCalendar = () => {
-  deadlineCalendar = document.getElementById("");
+var showDeadlineCalendar = (id) => {
+  deadlineCalendarButton = document.getElementById(id);
+  console.log(deadlineCalendarButton);
+  test = deadlineCalendarButton.querySelectorAll(".deadline_calendar")[0];
+  console.log(test);
+  test.showPicker();
 };
 
 window.addEventListener("load", () => {
@@ -326,6 +330,14 @@ window.addEventListener("load", () => {
     addTask(newTaskTitle.value, newTaskBody.value);
     newTaskTitle.value = "";
     newTaskBody.value = "";
+  });
+  let deadlineButtons = document.querySelectorAll(".add__deadline__button");
+  console.log(deadlineButtons);
+  deadlineButtons.forEach((button) => {
+    console.log("Кнопку добавил");
+    button.addEventListener("click", () => {
+      showDeadlineCalendar(button.id);
+    });
   });
   document.body.addEventListener("click", function (event) {
     if (event.target.classList.contains("delete__task__button")) {
